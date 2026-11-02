@@ -1,0 +1,20 @@
+{
+  "name": "resep-nusantara",
+  "version": "1.0.0",
+  "description": "Tugas 3 Pemrograman Web: Sistem Manajemen Resep Masakan Nusantara (Express + MySQL, Prepared Statements, MVC)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

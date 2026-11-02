@@ -1,0 +1,48 @@
+<% if (error) { %>
+  <div class="alert"><%= error %></div>
+<% } %>
+
+<div class="field">
+  <label for="nama_resep">Nama Resep</label>
+  <input type="text" id="nama_resep" name="nama_resep" maxlength="100" value="<%= resep.nama_resep || '' %>" required>
+</div>
+
+<div class="field">
+  <label for="asal_daerah">Asal Daerah</label>
+  <input type="text" id="asal_daerah" name="asal_daerah" maxlength="50" value="<%= resep.asal_daerah || '' %>" required>
+</div>
+
+<div class="field">
+  <label for="tingkat_kesulitan">Tingkat Kesulitan</label>
+  <select id="tingkat_kesulitan" name="tingkat_kesulitan" required>
+    <% kesulitan.forEach(k => { %>
+      <option value="<%= k %>" <%= resep.tingkat_kesulitan === k ? 'selected' : '' %>><%= k %></option>
+    <% }) %>
+  </select>
+</div>
+
+<div class="row">
+  <div class="field">
+    <label for="waktu_masak">Waktu Masak (menit)</label>
+    <input type="number" id="waktu_masak" name="waktu_masak" min="1" step="1" value="<%= resep.waktu_masak || '' %>" required>
+  </div>
+  <div class="field">
+    <label for="estimasi_biaya">Estimasi Biaya (Rp)</label>
+    <input type="number" id="estimasi_biaya" name="estimasi_biaya" min="0" step="500" value="<%= resep.estimasi_biaya !== undefined ? Number(resep.estimasi_biaya) : '' %>" required>
+  </div>
+</div>
+
+<div class="field">
+  <label for="tanggal_dibuat">Tanggal Dibuat</label>
+  <input type="date" id="tanggal_dibuat" name="tanggal_dibuat" value="<%= resep.tanggal_dibuat || '' %>" required>
+</div>
+
+<div class="field">
+  <label for="bahan">Bahan-bahan</label>
+  <textarea id="bahan" name="bahan" rows="4" required><%= resep.bahan || '' %></textarea>
+</div>
+
+<div class="field">
+  <label for="langkah">Langkah Memasak</label>
+  <textarea id="langkah" name="langkah" rows="6" required><%= resep.langkah || '' %></textarea>
+</div>

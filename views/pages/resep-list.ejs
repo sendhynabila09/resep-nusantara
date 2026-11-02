@@ -1,0 +1,57 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card">
+  <div class="card-head">
+    <h2>Master Data Resep Masakan Nusantara</h2>
+    <a href="/resep/tambah" class="btn btn-primary">+ Tambah Resep Baru</a>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama Resep</th>
+          <th>Asal Daerah</th>
+          <th>Kesulitan</th>
+          <th>Waktu</th>
+          <th>Biaya (Rp)</th>
+          <th>Tanggal</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (resepList.length === 0) { %>
+          <tr><td colspan="8" class="center">Belum ada data resep di basis data.</td></tr>
+        <% } else { %>
+          <% resepList.forEach(item => { %>
+            <tr>
+              <td><%= item.id %></td>
+              <td>
+                <strong><%= item.nama_resep %></strong>
+                <details>
+                  <summary>Lihat bahan &amp; langkah</summary>
+                  <p><b>Bahan:</b> <%= item.bahan %></p>
+                  <p><b>Langkah:</b> <%= item.langkah %></p>
+                </details>
+              </td>
+              <td><%= item.asal_daerah %></td>
+              <td><span class="badge badge-<%= item.tingkat_kesulitan.toLowerCase() %>"><%= item.tingkat_kesulitan %></span></td>
+              <td><%= item.waktu_masak %> menit</td>
+              <td><%= Number(item.estimasi_biaya).toLocaleString('id-ID') %></td>
+              <td><%= new Date(item.tanggal_dibuat + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) %></td>
+              <td class="actions">
+                <a href="/resep/edit/<%= item.id %>" class="link">Edit</a>
+                <form action="/resep/hapus/<%= item.id %>" method="POST" onsubmit="return confirm('Yakin ingin menghapus resep ini?');">
+                  <button type="submit" class="link link-danger">Hapus</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

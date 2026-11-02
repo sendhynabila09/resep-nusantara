@@ -1,0 +1,12 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card narrow">
+  <h2>Edit Resep #<%= resep.id %></h2>
+  <form action="/resep/edit/<%= resep.id %>" method="POST">
+    <%- include('../partials/resep-fields', { resep: resep, error: error, kesulitan: kesulitan }) %>
+    <button type="submit" class="btn btn-primary">Perbarui Perubahan</button>
+    <a href="/resep" class="cancel">Batal</a>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
